@@ -20,7 +20,7 @@
         .form-field {
             display: flex;
             flex-direction: column;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             width: 250px;
             /* Increased width */
         }
@@ -28,6 +28,7 @@
         .submit-button {
             display: flex;
             justify-content: center;
+            margin-top: 15px;
         }
 
         #selectFile {
@@ -38,7 +39,7 @@
             width: 100px; /* Adjust the width as needed */
             height: 100px;
             margin-top: 5px;;
-            margin-bottom: 5px; /* Add some space below the logo */
+            margin-bottom: 10px; /* Add some space below the logo */
         }
 
     </style>
@@ -55,8 +56,12 @@
                 <div class="form-container">
                     <form id="userForm">
                         <div class="form-group form-field">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <label for="firstname">First Name:</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname" required>
+                        </div>
+                        <div class="form-group form-field">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname" required>
                         </div>
                         <div class="form-group form-field">
                             <label for="email">Email:</label>
@@ -107,11 +112,12 @@
                 return;
             }
 
-            const name = document.getElementById('name').value;
+            const firstname = document.getElementById('firstname').value;
+            const lastname = document.getElementById('lastname').value;
             const email = document.getElementById('email').value;
             const company = document.getElementById('company').value;
 
-            const newLine = `${name},${email},${company}\r\n`;
+            const newLine = `${firstname},${lastname},${email},${company}\r\n`;
 
             // Get a writable stream to the file
             const writable = await fileHandle.createWritable();
