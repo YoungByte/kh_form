@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .form-container {
             display: flex;
@@ -12,13 +13,16 @@
             align-items: center;
             justify-content: center;
             text-align: left;
+            height: auto;
+            margin-top: 0px;
         }
 
         .form-field {
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
-            width: 200px; /* Adjust the width as needed */
+            width: 250px;
+            /* Increased width */
         }
 
         .submit-button {
@@ -29,33 +33,52 @@
         #selectFile {
             margin-top: 15px;
         }
+
+        .logo {
+            width: 100px; /* Adjust the width as needed */
+            height: 100px;
+            margin-top: 5px;;
+            margin-bottom: 5px; /* Add some space below the logo */
+        }
+
     </style>
 </head>
 
-<body>
-    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-        <h2>User Information Form</h2>
+<body style="color: #061C59;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <h2 class="my-4">Contact Information Form</h2>
+                <div>
+                    <img src="logo.png" alt="Logo" class="logo"> <!-- Reduced margin below the logo -->
+                </div>
+                <div class="form-container">
+                    <form id="userForm">
+                        <div class="form-group form-field">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group form-field">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group form-field">
+                            <label for="company">Company:</label>
+                            <input type="text" class="form-control" id="company" name="company" required>
+                        </div>
+                        <div class="submit-button">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </form>
+                    <button id="selectFile" class="btn btn-secondary mt-3">Select CSV File</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-container">
-        <form id="userForm">
-            <div class="form-field">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-field">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-field">
-                <label for="company">Company:</label>
-                <input type="text" id="company" name="company" required>
-            </div>
-            <div class="submit-button">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
-        <button id="selectFile">Select CSV File</button>
-    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
         let fileHandle;
@@ -71,6 +94,9 @@
                 multiple: false
             });
             alert('File selected. You can now submit data.');
+
+            // Hide the "Select CSV File" button
+            document.getElementById('selectFile').style.display = 'none';
         });
 
         document.getElementById('userForm').addEventListener('submit', async function (event) {
